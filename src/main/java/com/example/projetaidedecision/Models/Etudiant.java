@@ -2,15 +2,25 @@ package com.example.projetaidedecision.Models;
 
 import java.util.ArrayList;
 
-public class Eleve {
+public class Etudiant {
     private String id;
     private ArrayList<Etablissement> preference;
     private Etablissement assignement;
+    private int currentChoice;
 
-    public Eleve(String id) {
+    public Etudiant(String id) {
         this.id = id;
         this.preference = new ArrayList<>();
         this.assignement = null;
+        this.currentChoice=0;
+    }
+
+    public int getCurrentChoice() {
+        return currentChoice;
+    }
+
+    public void setCurrentChoice(int currentChoice) {
+        this.currentChoice = currentChoice;
     }
 
     public String getId() {
@@ -37,13 +47,19 @@ public class Eleve {
         this.assignement = assignement;
     }
 
-    @Override
-    public String toString() {
-        return "Eleve{" +
-                "id='" + id + '\'' +
-                ", preference=" + getPreferencesId() +
-                ", assignement=" + assignement +
-                '}';
+
+
+    public void addOneAssignement(Etablissement etablissement){
+        this.assignement =etablissement;
+
+    }
+
+    public Etablissement getEtblissment(int i){
+        return  this.preference.get(i);
+    }
+
+    public void incrementChoice(){
+        this.currentChoice++;
     }
 
     public String getPreferencesId(){
@@ -57,7 +73,19 @@ public class Eleve {
         return str.toString();
     }
 
+
+
+
     public void addOneChoice(Etablissement etablissement){
         this.preference.add(etablissement);
+    }
+
+    @Override
+    public String toString() {
+        return "Eleve{" +
+                "id='" + id + '\'' +
+                ", preference=" + getPreferencesId() +
+                ", assignement=" + assignement.getId()+
+                '}';
     }
 }

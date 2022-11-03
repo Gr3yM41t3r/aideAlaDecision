@@ -1,13 +1,12 @@
 package com.example.projetaidedecision.Models;
 
 import java.util.ArrayList;
-import java.util.Map;
 
 public class Etablissement {
     private String id;
     private int capacity;
-    private ArrayList<Eleve> studentPriority;
-    private ArrayList<Eleve> studentsEnroled;
+    private ArrayList<Etudiant> studentPriority;
+    private ArrayList<Etudiant> studentsEnroled;
 
     public Etablissement(String id, int capacity) {
         this.id = id;
@@ -32,32 +31,77 @@ public class Etablissement {
         this.capacity = capacity;
     }
 
-    public ArrayList<Eleve> getStudentPriority() {
+    public ArrayList<Etudiant> getStudentPriority() {
         return studentPriority;
     }
 
-    public void setStudentPriority(ArrayList<Eleve> studentPriority) {
+    public void setStudentPriority(ArrayList<Etudiant> studentPriority) {
         this.studentPriority = studentPriority;
     }
 
-    public ArrayList<Eleve> getStudentsEnroled() {
+    public ArrayList<Etudiant> getStudentsEnroled() {
         return studentsEnroled;
     }
 
-    public void setStudentsEnroled(ArrayList<Eleve> studentsEnroled) {
+    public void setStudentsEnroled(ArrayList<Etudiant> studentsEnroled) {
         this.studentsEnroled = studentsEnroled;
     }
 
-    public void addOneStudent(Eleve eleve){
+    public boolean hasFreeSpace(){
+        return this.studentsEnroled.size()<this.capacity;
+
+    }
+
+    public void addOneStudent(Etudiant eleve){
         if(this.studentPriority.size()<this.capacity){
             this.studentPriority.add(eleve);
         }
     }
 
+    public void addOneAssignemen(Etudiant etudiant) {
+        this.studentsEnroled.add(etudiant);
+
+    }
+
+    public void removeAssignement(Etudiant etudiant){
+        this.studentsEnroled.remove(etudiant);
+
+
+    }
+
+    public Etudiant getLowerPrefStudent(Etudiant student) {
+        int studPlace = studentPriority.indexOf(student);
+        int stud2Ind;
+        int max = studPlace;
+        Etudiant ret = null;
+        if (studPlace == -1 || studPlace == 0) return null;
+        for (Etudiant stud :
+                studentPriority) {
+            stud2Ind = studentPriority.indexOf(stud);
+            if (stud2Ind > max) {
+                max = stud2Ind;
+                ret = stud;
+            }
+        }
+        return ret;
+    }
+
+
     public String getPreferencesId(){
         StringBuilder str= new StringBuilder();
         String prefix = "";
-        for (Eleve eleve:this.studentPriority) {
+        for (Etudiant eleve:this.studentPriority) {
+            str.append(prefix);
+            prefix = ",";
+            str.append(eleve.getId());
+        }
+        return str.toString();
+    }
+
+    public String getEnrollerStudents(){
+        StringBuilder str= new StringBuilder();
+        String prefix = "";
+        for (Etudiant eleve:this.studentsEnroled) {
             str.append(prefix);
             prefix = ",";
             str.append(eleve.getId());
@@ -71,7 +115,7 @@ public class Etablissement {
                 "id='" + id + '\'' +
                 ", capacity=" + capacity +
                 ", studentPriority=" + this.getPreferencesId() +
-                ", studentsEnroled=" + studentsEnroled +
+                ", studentsEnroled=" + getEnrollerStudents() +
                 '}';
     }
 }
