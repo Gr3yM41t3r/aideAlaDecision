@@ -8,11 +8,22 @@ public class Etablissement {
     private ArrayList<Etudiant> studentPriority;
     private ArrayList<Etudiant> studentsEnroled;
 
+    private int currentChoice;
+
+    public int getCurrentChoice() {
+        return currentChoice;
+    }
+
+    public void setCurrentChoice(int currentChoice) {
+        this.currentChoice = currentChoice;
+    }
+
     public Etablissement(String id, int capacity) {
         this.id = id;
         this.capacity = capacity;
         this.studentPriority = new ArrayList<>();
         this.studentsEnroled = new ArrayList<>();
+        this.currentChoice=0;
     }
 
     public String getId() {
@@ -84,6 +95,13 @@ public class Etablissement {
             }
         }
         return ret;
+    }
+    public void incrementRank() {
+        currentChoice++;
+    }
+
+    public Etudiant getPref(int rank){
+        return  this.studentPriority.get(rank);
     }
 
 

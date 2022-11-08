@@ -5,7 +5,7 @@ import com.example.projetaidedecision.algorithms.StableMariage;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         PreferencesGenerator preferencesGenerator = new PreferencesGenerator();
         preferencesGenerator.createStudentList(36);
         preferencesGenerator.createUniversityList(6,6);
@@ -13,7 +13,7 @@ public class Main {
         preferencesGenerator.generateUniversitiesChoices();
 
         StableMariage stableMariage = new StableMariage(preferencesGenerator.getStudentList(),preferencesGenerator.getUniversityList());
-        stableMariage.solve();
+        stableMariage.solve2();
 
     }
 

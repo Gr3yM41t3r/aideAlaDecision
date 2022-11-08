@@ -73,6 +73,16 @@ public class Etudiant {
         return str.toString();
     }
 
+    public Etablissement getLowerPrefUniv(Etablissement other) throws Exception {
+        int otherIndex = this.preference.indexOf(other);
+        int assignRank = this.preference.indexOf(assignement);
+        if (otherIndex == -1) throw new Exception("Student.get LowerPrefStudent() : Prefs not in prefs list");
+        if (otherIndex < assignRank) {
+            return assignement;
+        }
+        return null;
+    }
+
 
 
 
@@ -85,7 +95,27 @@ public class Etudiant {
         return "Eleve{" +
                 "id='" + id + '\'' +
                 ", preference=" + getPreferencesId() +
-                ", assignement=" + assignement.getId()+
+                ", assignement=" + getIdd()+
                 '}';
+    }
+
+    public String getIdd(){
+        if (assignement == null){
+            return "null";
+        }
+        return assignement.getId();
+    }
+
+    public double calculateSatisfaction(){
+        if(this.assignement==null){
+            return 0;
+        }else{
+            double position = this.preference.indexOf(this.assignement);
+            System.out.println("-------------------------------");
+            System.out.println("postion" + position);
+            System.out.println("size" + this.preference.size());
+            System.out.println("total" + (float)(position/this.preference.size()));
+            return (1-((position)/this.preference.size()))*100;
+        }
     }
 }

@@ -11,5 +11,6 @@ module com.example.projetaidedecision {
     requires com.almasb.fxgl.all;
 
     opens com.example.projetaidedecision to javafx.fxml;
+    opens com.example.projetaidedecision.Controllers to javafx.fxml;
     exports com.example.projetaidedecision;
 }
