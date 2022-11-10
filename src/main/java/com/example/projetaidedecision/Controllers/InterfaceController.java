@@ -1,10 +1,10 @@
 package com.example.projetaidedecision.Controllers;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Slider;
+import javafx.scene.text.Text;
 
 public class InterfaceController {
 
@@ -15,7 +15,7 @@ public class InterfaceController {
     private CheckBox capFixe;
 
     @FXML
-    private Button generer = new Button();
+    private Button generer;
 
     @FXML
     private Slider nbEtablissement;
@@ -35,12 +35,30 @@ public class InterfaceController {
     @FXML
     private Button prioEtu;
 
+    @FXML
+    private Text valeurCapEtabli;
+
+    @FXML
+    private Text valeurNbEtabli;
+
+    @FXML
+    private Text valeurNbEtudiant;
+
+    @FXML
+    private Text valeurNbVoeux;
 
 
+    @FXML
+    private void generateProblem(){
+        int nombreEtablissement = (int) nbEtablissement.getValue();
+        int capaciteEtablissement = (int) capEtablissement.getValue();
+        int nombreEtudiant = (int) nbEtudiant.getValue();
+        int nombreVoeux = (int) nbVoeux.getValue();
+        System.out.println(nombreEtablissement);
+        System.out.println(capaciteEtablissement);
+        System.out.println(nombreEtudiant);
+        System.out.println(nombreVoeux);
 
-
-
-
-
+    }
 
 }

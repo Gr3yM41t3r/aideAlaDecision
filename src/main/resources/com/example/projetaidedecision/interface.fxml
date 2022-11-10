@@ -3,7 +3,6 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Slider?>
-<?import javafx.scene.control.Spinner?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextArea?>
@@ -12,61 +11,52 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="625.0" prefWidth="608.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projetaidedecision.Controllers.InterfaceController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="659.0" prefWidth="647.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projetaidedecision.Controllers.InterfaceController">
     <children>
-        <TabPane layoutX="-428.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE">
-            <tabs>
-                <Tab text="Untitled Tab 1" />
-                <Tab text="Untitled Tab 2">
-                    <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-                    </content>
-                </Tab>
-            </tabs>
-        </TabPane>
-        <TabPane layoutX="7.0" prefHeight="618.0" prefWidth="589.0" tabClosingPolicy="UNAVAILABLE">
+        <TabPane layoutY="-2.0" prefHeight="659.0" prefWidth="647.0" tabClosingPolicy="UNAVAILABLE">
             <tabs>
                 <Tab text="génération de données">
                     <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="505.0" prefWidth="625.0">
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="628.0" prefWidth="626.0">
                             <children>
                                 <Text layoutX="51.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Projet : Conception et&#10; implantation d’un système d’aide à la décision" textAlignment="CENTER">
                                     <font>
                                         <Font size="21.0" />
                                     </font>
                                 </Text>
-                                <Line endX="440.0" layoutX="109.0" layoutY="119.0" startX="-100.0" />
+                                <Line endX="492.0" layoutX="109.0" layoutY="119.0" startX="-100.0" />
                                 <Text layoutX="34.0" layoutY="145.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Établissements:" />
-                                <Slider fx:id="nbEtablissement" blockIncrement="1.0" layoutX="181.0" layoutY="168.0" prefHeight="16.0" prefWidth="355.0" value="50.0" />
-                                <Text layoutX="23.0" layoutY="181.0" strokeType="OUTSIDE" strokeWidth="0.0" text="nombre Établissement" />
-                                <Text layoutX="23.0" layoutY="213.0" strokeType="OUTSIDE" strokeWidth="0.0" text="capacité:" />
-                                <Slider fx:id="capEtablissement" blockIncrement="1.0" layoutX="181.0" layoutY="200.0" prefHeight="16.0" prefWidth="355.0" />
-                                <CheckBox fx:id="capFixe" layoutX="168.0" layoutY="232.0" mnemonicParsing="false" text="cette option permet de génerer une capacité entre 1 et cap max">
+                                <Slider fx:id="nbEtablissement" blockIncrement="1.0" layoutX="182.0" layoutY="159.0" max="30.0" prefHeight="16.0" prefWidth="355.0" value="3.0" />
+                                <Text layoutX="24.0" layoutY="172.0" strokeType="OUTSIDE" strokeWidth="0.0" text="nombre Établissement:" />
+                                <Text layoutX="24.0" layoutY="213.0" strokeType="OUTSIDE" strokeWidth="0.0" text="capacité:" />
+                                <Slider fx:id="capEtablissement" blockIncrement="1.0" layoutX="181.0" layoutY="200.0" max="50.0" prefHeight="16.0" prefWidth="355.0" value="1.0" />
+                                <CheckBox fx:id="capFixe" layoutX="182.0" layoutY="248.0" mnemonicParsing="false" text="cette option permet de génerer une capacité entre 1 et cap max">
                                     <font>
                                         <Font size="12.0" />
                                     </font>
                                 </CheckBox>
-                                <Text layoutX="23.0" layoutY="245.0" strokeType="OUTSIDE" strokeWidth="0.0" text="capacité:" />
-                                <Line endX="440.0" layoutX="124.0" layoutY="281.0" startX="-100.0" />
+                                <Text layoutX="24.0" layoutY="262.0" strokeType="OUTSIDE" strokeWidth="0.0" text="capacité variable:" />
+                                <Line endX="492.0" layoutX="109.0" layoutY="281.0" startX="-100.0" />
                                 <Text layoutX="45.0" layoutY="307.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Étudiant" />
                                 <Slider fx:id="nbEtudiant" blockIncrement="1.0" layoutX="181.0" layoutY="330.0" prefHeight="16.0" prefWidth="355.0" value="50.0" />
-                                <Text layoutX="34.0" layoutY="343.0" strokeType="OUTSIDE" strokeWidth="0.0" text="nombre Étudiant" />
-                                <Text layoutX="34.0" layoutY="375.0" strokeType="OUTSIDE" strokeWidth="0.0" text="nombre de voeux" />
+                                <Text layoutX="24.0" layoutY="343.0" strokeType="OUTSIDE" strokeWidth="0.0" text="nombre Étudiant" />
+                                <Text layoutX="24.0" layoutY="375.0" strokeType="OUTSIDE" strokeWidth="0.0" text="nombre de voeux" />
                                 <Slider fx:id="nbVoeux" blockIncrement="1.0" layoutX="181.0" layoutY="362.0" prefHeight="16.0" prefWidth="355.0" />
-                                <Text layoutX="34.0" layoutY="407.0" strokeType="OUTSIDE" strokeWidth="0.0" text="capacité:" />
+                                <Text layoutX="24.0" layoutY="407.0" strokeType="OUTSIDE" strokeWidth="0.0" text="capacité:" />
                                 <CheckBox fx:id="nbVoeuxFix" layoutX="175.0" layoutY="403.0" mnemonicParsing="false" text="cette option permet de génerer des voeux entre 1 et cap max">
                                     <font>
                                         <Font size="12.0" />
                                     </font>
                                 </CheckBox>
-                                <Line endX="440.0" layoutX="124.0" layoutY="454.0" startX="-100.0" />
-                                <Spinner layoutX="592.0" layoutY="163.0" prefHeight="7.0" prefWidth="54.0" />
-                                <Spinner editable="true" layoutX="592.0" layoutY="203.0" prefHeight="17.0" prefWidth="54.0" />
-                                <Button fx:id="generer" layoutX="280.0" layoutY="469.0" mnemonicParsing="false" text="générer" />
+                                <Line endX="492.0" layoutX="109.0" layoutY="454.0" startX="-100.0" />
+                                <Button fx:id="generer" layoutX="290.0" layoutY="469.0" mnemonicParsing="false" text="générer" onAction="#generateProblem" />
                                 <Button fx:id="prioEtu" layoutX="142.0" layoutY="541.0" mnemonicParsing="false" text="priorité etudiant" />
                                 <Button fx:id="prioEtabli" layoutX="359.0" layoutY="541.0" mnemonicParsing="false" text="priorité etablissement" />
-                                <Line endX="440.0" layoutX="124.0" layoutY="506.0" startX="-100.0" />
+                                <Line endX="492.0" layoutX="109.0" layoutY="506.0" startX="-100.0" />
+                                <Text fx:id="valeurNbEtabli" layoutX="555.0" layoutY="172.0" strokeType="OUTSIDE" strokeWidth="0.0" text="3" wrappingWidth="6.435999870300293" />
+                                <Text fx:id="valeurCapEtabli" layoutX="554.0" layoutY="213.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1" />
+                                <Text fx:id="valeurNbEtudiant" layoutX="554.0" layoutY="343.0" strokeType="OUTSIDE" strokeWidth="0.0" text="3" />
+                        <Text fx:id="valeurNbVoeux" layoutX="554.0" layoutY="375.0" strokeType="OUTSIDE" strokeWidth="0.0" text="3" />
                             </children>
                         </AnchorPane>
                     </content>
@@ -75,12 +65,22 @@
                     <content>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0">
                             <children>
-                                <TextArea layoutX="62.0" layoutY="52.0" prefHeight="164.0" prefWidth="453.0" text="d&#10;" />
+                                <TextArea layoutX="62.0" layoutY="52.0" prefHeight="164.0" prefWidth="453.0" text="&#10;" />
                                 <TextArea layoutX="62.0" layoutY="258.0" prefHeight="164.0" prefWidth="453.0" />
                             </children>
                         </AnchorPane>
                     </content>
                 </Tab>
+            <Tab text="solution">
+               <content>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <TextArea layoutX="62.0" layoutY="52.0" prefHeight="164.0" prefWidth="453.0" text="&#10;" />
+                        <TextArea layoutX="62.0" layoutY="258.0" prefHeight="164.0" prefWidth="453.0" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
             </tabs>
         </TabPane>
     </children>

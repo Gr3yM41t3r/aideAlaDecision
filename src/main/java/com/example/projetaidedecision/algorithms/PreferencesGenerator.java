@@ -34,7 +34,7 @@ public class PreferencesGenerator {
 
     public void createUniversityList(int numberOfUniversitiesToGenerate, int maximumCapacity) {
         for (int i = 0; i < numberOfUniversitiesToGenerate; i++) {
-            Etablissement etablissement = new Etablissement("s_" + i, 6);
+            Etablissement etablissement = new Etablissement("s_" + i, maximumCapacity);
             universityList.add(etablissement);
             System.out.println(etablissement.toString());
         }

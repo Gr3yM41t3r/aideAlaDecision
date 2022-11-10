@@ -64,10 +64,12 @@ public class Etablissement {
     }
 
     public void addOneStudent(Etudiant eleve){
-        if(this.studentPriority.size()<this.capacity){
+
             this.studentPriority.add(eleve);
-        }
+
     }
+
+
 
     public void addOneAssignemen(Etudiant etudiant) {
         this.studentsEnroled.add(etudiant);

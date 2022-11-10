@@ -19,11 +19,9 @@ public class StableMariage {
 
     public void solve() {
         List<Etudiant> input = new ArrayList<>(this.listeEtudiants);
-
         while (!input.isEmpty()) {
             List<Etudiant> removeToInput = new ArrayList<>();
             List<Etudiant> addToInput = new ArrayList<>();
-
             for (Etudiant etudiant : input) {
                 removeToInput.add(etudiant);
                 Etablissement wish = etudiant.getEtblissment(etudiant.getCurrentChoice());
@@ -72,9 +70,7 @@ public class StableMariage {
                     toRemove.add(etablissement);
                     continue;
                 }
-
                 Etudiant etudiant = etablissement.getPref(etablissement.getCurrentChoice());
-
                 if (etudiant.getAssignement() == null){
                     etudiant.addOneAssignement(etablissement);
                     etablissement.addOneAssignemen(etudiant);
@@ -91,13 +87,11 @@ public class StableMariage {
                         etablissement.incrementRank();
                         toRemove.add(etablissement);
                     }
-
                 }
                 if (etablissement.hasFreeSpace()) {
                     toRemove.remove((etablissement));
                     toAdd.add(etablissement);
                 }
-
             }
             input.removeAll(toRemove);
             input.addAll(toAdd);
