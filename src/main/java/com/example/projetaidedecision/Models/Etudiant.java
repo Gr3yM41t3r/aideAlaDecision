@@ -90,6 +90,21 @@ public class Etudiant {
         this.preference.add(etablissement);
     }
 
+
+    public String getAllPreferences(){
+        StringBuilder str= new StringBuilder("(");
+        for (int i = 0; i < this.preference.size(); i++) {
+            str.append(this.preference.get(i).getId()).append(",");
+        }
+        str.deleteCharAt(str.length()-1);
+        str.append(")");
+        return str.toString();
+    }
+
+    public String printInProblemFormat(){
+        return this.id+":"+this.getAllPreferences();
+    }
+
     @Override
     public String toString() {
         return "Eleve{" +

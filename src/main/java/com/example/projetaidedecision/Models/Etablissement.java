@@ -5,8 +5,18 @@ import java.util.ArrayList;
 public class Etablissement {
     private String id;
     private int capacity;
+    private int numberOfPreferences;
+    private boolean randomCapacity=false;
     private ArrayList<Etudiant> studentPriority;
     private ArrayList<Etudiant> studentsEnroled;
+
+    public void setNumberOfPreferences(int numberOfPreferences) {
+        this.numberOfPreferences = numberOfPreferences;
+    }
+
+    public void setRandomCapacity(boolean randomCapacity) {
+        this.randomCapacity = randomCapacity;
+    }
 
     private int currentChoice;
 
@@ -21,6 +31,7 @@ public class Etablissement {
     public Etablissement(String id, int capacity) {
         this.id = id;
         this.capacity = capacity;
+        this.numberOfPreferences=capacity;
         this.studentPriority = new ArrayList<>();
         this.studentsEnroled = new ArrayList<>();
         this.currentChoice=0;
@@ -127,6 +138,20 @@ public class Etablissement {
             str.append(eleve.getId());
         }
         return str.toString();
+    }
+
+    public String getAllPreferences(){
+        StringBuilder str= new StringBuilder("(" + this.getCapacity());
+        for (int i = 0; i < this.studentPriority.size(); i++) {
+            str.append(",").append(this.studentPriority.get(i).getId());
+        }
+
+        str.append(")");
+        return str.toString();
+    }
+
+    public String printInProblemFormat(){
+        return this.id+":"+this.getAllPreferences();
     }
 
     @Override

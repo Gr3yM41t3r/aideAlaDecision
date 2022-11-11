@@ -26,24 +26,35 @@ public class PreferencesGenerator {
 
     public void createStudentList(int numberOfStudentToGenerate) {
         for (int i = 0; i < numberOfStudentToGenerate; i++) {
-            Etudiant eleve = new Etudiant("i_" + i);
+            Etudiant eleve = new Etudiant("i" + i);
             studentList.add(eleve);
             //System.out.println(eleve.toString());
         }
     }
 
-    public void createUniversityList(int numberOfUniversitiesToGenerate, int maximumCapacity) {
-        for (int i = 0; i < numberOfUniversitiesToGenerate; i++) {
-            Etablissement etablissement = new Etablissement("s_" + i, maximumCapacity);
-            universityList.add(etablissement);
-            System.out.println(etablissement.toString());
+    public void createUniversityList(int numberOfUniversitiesToGenerate, int maximumCapacity,boolean randomCap) {
+        if (randomCap){
+            for (int i = 0; i < numberOfUniversitiesToGenerate; i++) {
+                Etablissement etablissement = new Etablissement("s" + i, random.nextInt(maximumCapacity-1) + 1);
+                universityList.add(etablissement);
+                System.out.println(etablissement.toString());
+            }
+        }else {
+            for (int i = 0; i < numberOfUniversitiesToGenerate; i++) {
+                Etablissement etablissement = new Etablissement("s" + i, maximumCapacity);
+                universityList.add(etablissement);
+                System.out.println(etablissement.toString());
+            }
         }
+
     }
 
-    public void generateStudentsChoices(){
+    public void generateStudentsChoices(int maxValue){
         for (Etudiant eleve:studentList) {
             ArrayList<Etablissement> tempList = (ArrayList<Etablissement>) universityList.clone();
-            for (int i = 0; i < universityList.size(); i++) {
+            int maxvalue = Math.min(maxValue, universityList.size());
+            for (int i = 0; i < maxvalue; i++) {
+                System.out.println(maxvalue);
                 int rdmchoice = random.nextInt(tempList.size());
                 eleve.addOneChoice(tempList.get(rdmchoice));
                 tempList.remove(rdmchoice);
@@ -57,6 +68,20 @@ public class PreferencesGenerator {
         for (Etablissement etablissement:universityList) {
             ArrayList<Etudiant> tempList = (ArrayList<Etudiant>) studentList.clone();
             for (int i = 0; i < studentList.size(); i++) {
+                int rdmchoice = random.nextInt(tempList.size());
+                etablissement.addOneStudent(tempList.get(rdmchoice));
+                tempList.remove(rdmchoice);
+            }
+            System.out.println(etablissement.toString());
+
+        }
+    }
+
+    public void generateUniversitiesChoices(int maxValue){
+        for (Etablissement etablissement:universityList) {
+            ArrayList<Etudiant> tempList = (ArrayList<Etudiant>) studentList.clone();
+            int maxvalue = Math.min(maxValue, studentList.size());
+            for (int i = 0; i < maxvalue; i++) {
                 int rdmchoice = random.nextInt(tempList.size());
                 etablissement.addOneStudent(tempList.get(rdmchoice));
                 tempList.remove(rdmchoice);
