@@ -11,6 +11,8 @@ import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.security.cert.Extension;
 import java.util.ArrayList;
 
@@ -130,7 +132,6 @@ public class InterfaceController {
     @FXML
     public void solvePriEta(){
         System.out.println("solve");
-
         listEtudiant.forEach(Etudiant::resetAssignement);
         listeEtablissement.forEach(Etablissement::resetAssignement);
         mariage = new StableMariage(listEtudiant,listeEtablissement);
@@ -159,6 +160,30 @@ public class InterfaceController {
         }
         listeEtablissement = fileParser.getEtablissements();
         listEtudiant = fileParser.getEtudiants();
+
+    }
+
+    @FXML
+    public void createAndSaveFile() throws FileNotFoundException {
+        FileChooser fx = new FileChooser();
+        fx.getExtensionFilters().add(new FileChooser.ExtensionFilter(".txt",".csv"));
+        File f = fx.showSaveDialog(null);
+        File file;
+        if(!f.getName().contains(".")) {
+            file = new File(f.getAbsolutePath() + ".txt");
+            PrintWriter outFile =new PrintWriter(file);
+            for (Etudiant et:listEtudiant) {
+                outFile.println(et.printInProblemFormat());
+
+            }
+            for (Etablissement et:listeEtablissement) {
+                outFile.println(et.printInProblemFormat());
+
+            }
+            outFile.close();
+        }
+
+
 
     }
 

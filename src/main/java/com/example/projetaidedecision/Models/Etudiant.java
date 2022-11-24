@@ -112,6 +112,7 @@ public class Etudiant {
                 "id='" + id + '\'' +
                 ", preference=" + getPreferencesId() +
                 ", assignement=" + getIdd()+
+                ", satisfaction=" + calculateSatisfaction()+
                 '}';
     }
 
