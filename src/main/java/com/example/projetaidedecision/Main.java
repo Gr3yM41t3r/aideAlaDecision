@@ -5,6 +5,7 @@ import com.example.projetaidedecision.algorithms.PreferencesGenerator;
 import com.example.projetaidedecision.algorithms.StableMariage;
 
 import java.io.File;
+import         java.io.PrintStream;
 
 public class Main {
 
@@ -17,10 +18,11 @@ public class Main {
 
         StableMariage stableMariage = new StableMariage(preferencesGenerator.getStudentList(),preferencesGenerator.getUniversityList());
         stableMariage.solve();*/
-        FileParser fileParser = new FileParser();
-        fileParser.parse("src/main/java/com/example/projetaidedecision/problems/problem1.txt");
-        StableMariage stableMariage = new StableMariage(fileParser.getEtudiants(),fileParser.getEtablissements());
-        stableMariage.solve2();
+        //FileParser fileParser = new FileParser();
+        //fileParser.parse("src/main/java/com/example/projetaidedecision/problems/problem1.txt");
+        //StableMariage stableMariage = new StableMariage(fileParser.getEtudiants(),fileParser.getEtablissements());
+        //stableMariage.solve2();
+
 
     }
 

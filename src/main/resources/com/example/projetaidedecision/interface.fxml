@@ -51,6 +51,7 @@
                                 <Line endX="492.0" layoutX="109.0" layoutY="528.0" startX="-100.0" />
                                 <Button fx:id="generer" layoutX="290.0" layoutY="541.0" mnemonicParsing="false" onAction="#generateProblem" text="générer" />
                                 <Line endX="492.0" layoutX="109.0" layoutY="575.0" startX="-100.0" />
+
                                 <Text fx:id="valeurNbEtabli" layoutX="550.0" layoutY="172.0" strokeType="OUTSIDE" strokeWidth="0.0" text="${nbEtablissement.value}" wrappingWidth="26.435999870300293" />
                                 <Text fx:id="valeurCapEtabli" layoutX="548.0" layoutY="213.0" strokeType="OUTSIDE" strokeWidth="0.0" text="${capEtablissement.value}" wrappingWidth="31.435999870300293" />
                                 <Text fx:id="valeurNbEtudiant" layoutX="548.0" layoutY="343.0" strokeType="OUTSIDE" strokeWidth="0.0" text="${nbEtudiant.value}" wrappingWidth="29.435999870300293" />
@@ -70,6 +71,9 @@
                                 <TextArea fx:id="etablissementProblemeTexte" layoutX="62.0" layoutY="258.0" prefHeight="164.0" prefWidth="453.0" />
                         <Text layoutX="62.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Étudiant" />
                         <Text layoutX="62.0" layoutY="248.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Établissements" />
+                                <Button fx:id="solvePriEtu" layoutX="190.0" layoutY="541.0" mnemonicParsing="false" onAction="#solvePriEtu" text="priorité etudiant" />
+                                <Button fx:id="solvePriEta" layoutX="350.0" layoutY="541.0" mnemonicParsing="false" onAction="#solvePriEta" text="priorité etblissement" />
+
                             </children>
                         </AnchorPane>
                     </content>

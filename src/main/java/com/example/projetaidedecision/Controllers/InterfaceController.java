@@ -12,6 +12,12 @@ import java.util.ArrayList;
 
 public class InterfaceController {
 
+
+    StableMariage mariage;
+    @FXML
+    public Button solvePriEtu;
+    @FXML
+    public Button solvePriEta;
     @FXML
     private Slider capEtablissement;
 
@@ -88,9 +94,21 @@ public class InterfaceController {
 
         }
         tabPrincipale.getSelectionModel().select(tabProbleme);
-        StableMariage mariage = new StableMariage(listEtudiant,listeEtablissement);
-        mariage.solve2();
+         mariage = new StableMariage(listEtudiant,listeEtablissement);
     }
+
+    @FXML
+    public void solvePriEtu() throws Exception {
+        mariage.solve2();
+
+    }
+
+    @FXML
+    public void solvePriEta(){
+        mariage.solve();
+
+    }
+
 
     @FXML
     public void onSliderChange(){

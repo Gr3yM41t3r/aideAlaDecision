@@ -73,10 +73,11 @@ public class Etudiant {
         return str.toString();
     }
 
+    //TODO fix bug de merde
     public Etablissement getLowerPrefUniv(Etablissement other) throws Exception {
         int otherIndex = this.preference.indexOf(other);
         int assignRank = this.preference.indexOf(assignement);
-        if (otherIndex == -1) throw new Exception("Student.get LowerPrefStudent() : Prefs not in prefs list");
+        //if (otherIndex == -1) throw new Exception("Student.get LowerPrefStudent() : Prefs not in prefs list");
         if (otherIndex < assignRank) {
             return assignement;
         }
