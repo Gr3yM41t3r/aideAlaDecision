@@ -88,7 +88,10 @@ public class Etablissement {
     }
 
     public void removeAssignement(Etudiant etudiant){
-        this.studentsEnroled.remove(etudiant);
+        System.err.println(this.studentsEnroled.size() +" got "+studentsEnroled.get(0).getId() +" and removing" +etudiant.getId());
+        Boolean b =studentsEnroled.remove(etudiant);
+        System.err.println(b);
+
 
 
     }
@@ -100,7 +103,7 @@ public class Etablissement {
         Etudiant ret = null;
         if (studPlace == -1 || studPlace == 0) return null;
         for (Etudiant stud :
-                studentPriority) {
+                studentsEnroled) {
             stud2Ind = studentPriority.indexOf(stud);
             if (stud2Ind > max) {
                 max = stud2Ind;
@@ -162,5 +165,9 @@ public class Etablissement {
                 ", studentPriority=" + this.getPreferencesId() +
                 ", studentsEnroled=" + getEnrollerStudents() +
                 '}';
+    }
+
+    public void resetAssignement(){
+        this.studentsEnroled = new ArrayList<>();
     }
 }

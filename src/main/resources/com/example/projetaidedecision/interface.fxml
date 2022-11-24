@@ -38,11 +38,11 @@
                                 <Text layoutX="20.0" layoutY="298.0" strokeType="OUTSIDE" strokeWidth="0.0" text="capacité variable:" />
                                 <Line endX="492.0" layoutX="109.0" layoutY="330.0" startX="-100.0" />
                                 <Text layoutX="45.0" layoutY="356.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Étudiant" />
-                                <Slider fx:id="nbEtudiant" blockIncrement="1.0" layoutX="181.0" layoutY="379.0" majorTickUnit="1.0" minorTickCount="0"  max="30.0" min="1.0" prefHeight="16.0" prefWidth="355.0" showTickMarks="true" snapToTicks="true" value="3.0" />
+                                <Slider fx:id="nbEtudiant" blockIncrement="1.0" layoutX="181.0" layoutY="379.0" majorTickUnit="1.0" max="30.0" min="1.0" minorTickCount="0" prefHeight="16.0" prefWidth="355.0" showTickMarks="true" snapToTicks="true" value="3.0" />
                                 <Text layoutX="24.0" layoutY="392.0" strokeType="OUTSIDE" strokeWidth="0.0" text="nombre Étudiant" />
                                 <Text layoutX="24.0" layoutY="424.0" strokeType="OUTSIDE" strokeWidth="0.0" text="nombre de voeux" />
                                 <Slider fx:id="nbVoeux" blockIncrement="1.0" layoutX="181.0" layoutY="411.0" majorTickUnit="1.0" max="30.0" min="1.0" minorTickCount="0" prefHeight="16.0" prefWidth="355.0" showTickMarks="true" snapToTicks="true" value="1.0" />
-                                <Text layoutX="24.0" layoutY="456.0" strokeType="OUTSIDE" strokeWidth="0.0" text="capacité:" />
+                                <Text layoutX="34.0" layoutY="465.0" strokeType="OUTSIDE" strokeWidth="0.0" text="capacité:" />
                                 <CheckBox fx:id="nbVoeuxFix" layoutX="175.0" layoutY="452.0" mnemonicParsing="false" text="cette option permet de génerer des voeux entre 1 et cap max">
                                     <font>
                                         <Font size="12.0" />
@@ -54,8 +54,8 @@
 
                                 <Text fx:id="valeurNbEtabli" layoutX="550.0" layoutY="172.0" strokeType="OUTSIDE" strokeWidth="0.0" text="${nbEtablissement.value}" wrappingWidth="26.435999870300293" />
                                 <Text fx:id="valeurCapEtabli" layoutX="548.0" layoutY="213.0" strokeType="OUTSIDE" strokeWidth="0.0" text="${capEtablissement.value}" wrappingWidth="31.435999870300293" />
-                                <Text fx:id="valeurNbEtudiant" layoutX="548.0" layoutY="343.0" strokeType="OUTSIDE" strokeWidth="0.0" text="${nbEtudiant.value}" wrappingWidth="29.435999870300293" />
-                                <Text fx:id="valeurNbVoeux" layoutX="546.0" layoutY="375.0" strokeType="OUTSIDE" strokeWidth="0.0" text="${nbVoeux.value}" wrappingWidth="33.43599987030029" />
+                                <Text fx:id="valeurNbEtudiant" layoutX="545.0" layoutY="392.0" strokeType="OUTSIDE" strokeWidth="0.0" text="${nbEtudiant.value}" wrappingWidth="29.435999870300293" />
+                                <Text fx:id="valeurNbVoeux" layoutX="546.0" layoutY="424.0" strokeType="OUTSIDE" strokeWidth="0.0" text="${nbVoeux.value}" wrappingWidth="33.43599987030029" />
                                  <Text layoutX="20.0" layoutY="253.0" strokeType="OUTSIDE" strokeWidth="0.0" text="nombre de preference" />
                                 <Slider fx:id="nbPreferences" blockIncrement="1.0" layoutX="177.0" layoutY="240.0" majorTickUnit="1.0" max="30.0" min="1.0" minorTickCount="0" prefHeight="16.0" prefWidth="355.0" showTickMarks="true" snapToTicks="true" value="1.0" />
                                  <Text fx:id="valeurNbPreference" layoutX="544.0" layoutY="253.0" strokeType="OUTSIDE" strokeWidth="0.0" text="${nbPreferences.value}" wrappingWidth="31.435999870300293" />
@@ -63,16 +63,19 @@
                         </AnchorPane>
                     </content>
                 </Tab>
-                <Tab fx:id="tabProbleme" text="probleme">
+                <Tab fx:id="tabProbleme" text="problème">
                     <content>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0">
                             <children>
-                                <TextArea fx:id="etudiantProblemeText" layoutX="62.0" layoutY="52.0" prefHeight="164.0" prefWidth="453.0" />
-                                <TextArea fx:id="etablissementProblemeTexte" layoutX="62.0" layoutY="258.0" prefHeight="164.0" prefWidth="453.0" />
+                                <TextArea fx:id="etudiantProblemeText" layoutX="62.0" layoutY="52.0" prefHeight="164.0" prefWidth="523.0" />
+                                <TextArea fx:id="etablissementProblemeTexte" layoutX="62.0" layoutY="258.0" prefHeight="164.0" prefWidth="522.0" />
                         <Text layoutX="62.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Étudiant" />
                         <Text layoutX="62.0" layoutY="248.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Établissements" />
-                                <Button fx:id="solvePriEtu" layoutX="190.0" layoutY="541.0" mnemonicParsing="false" onAction="#solvePriEtu" text="priorité etudiant" />
-                                <Button fx:id="solvePriEta" layoutX="350.0" layoutY="541.0" mnemonicParsing="false" onAction="#solvePriEta" text="priorité etblissement" />
+                                <Button fx:id="solvePriEtu" layoutX="127.0" layoutY="567.0" mnemonicParsing="false" onAction="#solvePriEtu" text="priorité étudiant" />
+                                <Button fx:id="solvePriEta" layoutX="337.0" layoutY="567.0" mnemonicParsing="false" onAction="#solvePriEta" text="priorité étblissement" />
+                        <Line endX="492.0" layoutX="115.0" layoutY="522.0" startX="-100.0" />
+                        <Button fx:id="saveProblem" layoutX="241.0" layoutY="460.0" mnemonicParsing="false" onAction="#solvePriEtu" text="Enregistrer le probleme" />
+                        <Button fx:id="openProblem" layoutX="529.0" layoutY="13.0" mnemonicParsing="false" onAction="#openAndParseFile" text="ouvrir" />
 
                             </children>
                         </AnchorPane>
@@ -82,8 +85,10 @@
                <content>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0">
                      <children>
-                        <TextArea layoutX="62.0" layoutY="52.0" prefHeight="164.0" prefWidth="453.0" text="&#10;" />
-                        <TextArea layoutX="62.0" layoutY="258.0" prefHeight="164.0" prefWidth="453.0" />
+                        <TextArea fx:id="solutionEtudiant" layoutX="62.0" layoutY="52.0" prefHeight="210.0" prefWidth="511.0" text="&#10;" />
+                        <TextArea fx:id="solutionEtablissement" layoutX="63.0" layoutY="348.0" prefHeight="202.0" prefWidth="510.0" />
+                        <Text layoutX="62.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Étudiant" />
+                        <Text layoutX="62.0" layoutY="328.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Établissement" />
                      </children>
                   </AnchorPane>
                </content>

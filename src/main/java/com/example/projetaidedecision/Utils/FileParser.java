@@ -44,14 +44,7 @@ public class FileParser {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        for (Etudiant etudiant:etudiants) {
-            System.out.println(etudiant.toString());
 
-        }
-        for (Etablissement etablissement:etablissements) {
-            System.out.println(etablissement.toString());
-
-        }
     }
 
     public void addPreferences(String line){
@@ -95,8 +88,7 @@ public class FileParser {
             id = line.split(":")[0];
             preference = line.split(":")[1];
             preference=preference.substring(1,preference.length()-1);
-            System.out.print(id+" ");
-            System.out.println(preference+" ");
+
             etudiant = new Etudiant(id);
             String[] listPreference = preference.split(",");
             this.etudiants.add(etudiant);

@@ -127,11 +127,10 @@ public class Etudiant {
             return 0;
         }else{
             double position = this.preference.indexOf(this.assignement);
-            System.out.println("-------------------------------");
-            System.out.println("postion" + position);
-            System.out.println("size" + this.preference.size());
-            System.out.println("total" + (float)(position/this.preference.size()));
             return (1-((position)/this.preference.size()))*100;
         }
+    }
+    public void resetAssignement(){
+        this.assignement = null;
     }
 }

@@ -37,13 +37,11 @@ public class PreferencesGenerator {
             for (int i = 0; i < numberOfUniversitiesToGenerate; i++) {
                 Etablissement etablissement = new Etablissement("s" + i, random.nextInt(maximumCapacity-1) + 1);
                 universityList.add(etablissement);
-                System.out.println(etablissement.toString());
             }
         }else {
             for (int i = 0; i < numberOfUniversitiesToGenerate; i++) {
                 Etablissement etablissement = new Etablissement("s" + i, maximumCapacity);
                 universityList.add(etablissement);
-                System.out.println(etablissement.toString());
             }
         }
 
@@ -54,7 +52,7 @@ public class PreferencesGenerator {
             ArrayList<Etablissement> tempList = (ArrayList<Etablissement>) universityList.clone();
             int maxvalue = Math.min(maxValue, universityList.size());
             for (int i = 0; i < maxvalue; i++) {
-                System.out.println(maxvalue);
+
                 int rdmchoice = random.nextInt(tempList.size());
                 eleve.addOneChoice(tempList.get(rdmchoice));
                 tempList.remove(rdmchoice);
@@ -72,7 +70,6 @@ public class PreferencesGenerator {
                 etablissement.addOneStudent(tempList.get(rdmchoice));
                 tempList.remove(rdmchoice);
             }
-            System.out.println(etablissement.toString());
 
         }
     }
@@ -86,7 +83,6 @@ public class PreferencesGenerator {
                 etablissement.addOneStudent(tempList.get(rdmchoice));
                 tempList.remove(rdmchoice);
             }
-            System.out.println(etablissement.toString());
 
         }
     }

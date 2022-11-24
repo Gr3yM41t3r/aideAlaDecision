@@ -28,15 +28,21 @@ public class StableMariage {
                 if (wish.hasFreeSpace()) {
                     etudiant.addOneAssignement(wish);
                     wish.addOneAssignemen(etudiant);
+
                 } else {
                     Etudiant deleted = wish.getLowerPrefStudent(etudiant);
                     if (deleted != null) {
+
+                        System.out.println("--------------------------------------");
                         deleted.incrementChoice();
                         addToInput.add(deleted);
+                        System.out.println("1Université "+wish.getId() +"  has "+wish.getStudentsEnroled().size());
                         wish.removeAssignement(deleted);
+                        System.out.println("2Université "+wish.getId() +"  has now  "+wish.getStudentsEnroled().size());
                         deleted.setAssignement(null);
                         etudiant.addOneAssignement(wish);
                         wish.addOneAssignemen(etudiant);
+                        System.out.println("3Université "+wish.getId() +"  has now now "+wish.getStudentsEnroled().size());
 
                     } else {
                         etudiant.incrementChoice();
@@ -51,13 +57,7 @@ public class StableMariage {
             input.removeAll(removeToInput);
             input.addAll(addToInput);
         }
-        for (Etudiant etudiant: this.listeEtudiants) {
-            System.err.println(etudiant.toString());
 
-        }
-        for (Etablissement eta:this.listeEtablissement) {
-            System.err.println(eta.toString());
-        }
     }
 
     public void solve2() throws Exception {
@@ -96,14 +96,7 @@ public class StableMariage {
             input.removeAll(toRemove);
             input.addAll(toAdd);
         }
-        for (Etudiant etudiant: this.listeEtudiants) {
-            System.err.print(etudiant.toString());
-            System.err.println("   satisfaction"+etudiant.calculateSatisfaction());
 
-        }
-        for (Etablissement eta:this.listeEtablissement) {
-            System.err.println(eta.toString());
-        }
 
     }
 }
