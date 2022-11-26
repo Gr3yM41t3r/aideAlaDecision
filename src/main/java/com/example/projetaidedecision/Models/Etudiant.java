@@ -128,7 +128,13 @@ public class Etudiant {
             return 0;
         }else{
             double position = this.preference.indexOf(this.assignement);
-            return (1-((position)/this.preference.size()))*100;
+            double finalScore = (1-((position)/this.preference.size()))*100;
+            if(finalScore>100){
+                return 0;
+            }else {
+
+            return finalScore;
+            }
         }
     }
     public void resetAssignement(){

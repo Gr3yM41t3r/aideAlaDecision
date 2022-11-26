@@ -13,10 +13,20 @@ import javafx.stage.FileChooser;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
-import java.security.cert.Extension;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class InterfaceController {
+
+    StableMariage mariage;
+    ArrayList<Etablissement> listeEtablissement;
+    ArrayList<Etudiant> listEtudiant;
+    @FXML
+    private Text avgEtab;
+
+    @FXML
+    private Text avgStudent;
 
     @FXML
     private Slider capEtablissement;
@@ -53,6 +63,9 @@ public class InterfaceController {
 
     @FXML
     private Button saveProblem;
+
+    @FXML
+    private Button shuffleButton;
 
     @FXML
     private TextArea solutionEtablissement;
@@ -92,68 +105,65 @@ public class InterfaceController {
 
     @FXML
     private Text valeurNbVoeux;
-    StableMariage mariage;
-
-    ArrayList<Etablissement> listeEtablissement;
-    ArrayList<Etudiant> listEtudiant;
 
     @FXML
     private void generateProblem() throws Exception {
         reset();
         PreferencesGenerator preferencesGenerator = new PreferencesGenerator();
-        preferencesGenerator.createStudentList((int)nbEtudiant.getValue());
-        preferencesGenerator.createUniversityList((int)nbEtablissement.getValue(),(int) capEtablissement.getValue(),capFixe.isSelected());
+        preferencesGenerator.createStudentList((int) nbEtudiant.getValue());
+        preferencesGenerator.createUniversityList((int) nbEtablissement.getValue(), (int) capEtablissement.getValue(), capFixe.isSelected());
         preferencesGenerator.generateStudentsChoices((int) nbVoeux.getValue());
-        preferencesGenerator.generateUniversitiesChoices((int)nbPreferences.getValue());
+        preferencesGenerator.generateUniversitiesChoices((int) nbPreferences.getValue());
         listEtudiant = preferencesGenerator.getStudentList();
         listeEtablissement = preferencesGenerator.getUniversityList();
         etablissementProblemeTexte.clear();
         etudiantProblemeText.clear();
-        for (Etudiant etudiant:listEtudiant) {
-            etudiantProblemeText.appendText(etudiant.printInProblemFormat()+"\n");
+        for (Etudiant etudiant : listEtudiant) {
+            etudiantProblemeText.appendText(etudiant.printInProblemFormat() + "\n");
         }
-        for (Etablissement etablissement:listeEtablissement) {
-            etablissementProblemeTexte.appendText(etablissement.printInProblemFormat()+"\n");
+        for (Etablissement etablissement : listeEtablissement) {
+            etablissementProblemeTexte.appendText(etablissement.printInProblemFormat() + "\n");
         }
         tabPrincipale.getSelectionModel().select(tabProbleme);
     }
 
     @FXML
-    public void solvePriEtu() throws Exception {
+    public void solvePriEta() throws Exception {
         listEtudiant.forEach(Etudiant::resetAssignement);
         listeEtablissement.forEach(Etablissement::resetAssignement);
-        mariage = new StableMariage(listEtudiant,listeEtablissement);
+        mariage = new StableMariage(listEtudiant, listeEtablissement);
         mariage.solve2();
         showSolutions();
 
     }
 
     @FXML
-    public void solvePriEta(){
+    public void solvePriEtu() {
         listEtudiant.forEach(Etudiant::resetAssignement);
         listeEtablissement.forEach(Etablissement::resetAssignement);
-        mariage = new StableMariage(listEtudiant,listeEtablissement);
+        mariage = new StableMariage(listEtudiant, listeEtablissement);
         mariage.solve();
         showSolutions();
     }
 
     @FXML
-    public void openAndParseFile(){
+    public void openAndParseFile() {
         reset();
         FileChooser fx = new FileChooser();
-        fx.getExtensionFilters().add(new FileChooser.ExtensionFilter(".txt","*.txt"));
+        fx.getExtensionFilters().add(new FileChooser.ExtensionFilter(".txt", "*.txt"));
         File f = fx.showOpenDialog(null);
         FileParser fileParser = new FileParser();
         etablissementProblemeTexte.clear();
         etudiantProblemeText.clear();
-        if (f!=null){
+        if (f != null) {
             fileParser.parse(f.getPath());
             System.err.println(f.getPath());
-            for (Etudiant etudiant:fileParser.getEtudiants()) {
-                etudiantProblemeText.appendText(etudiant.printInProblemFormat()+"\n");
+
+            for (Etudiant etudiant : fileParser.getEtudiants()) {
+                etudiantProblemeText.appendText(etudiant.printInProblemFormat() + "\n");
             }
-            for (Etablissement etablissement:fileParser.getEtablissements()) {
-                etablissementProblemeTexte.appendText(etablissement.printInProblemFormat()+"\n");
+            for (Etablissement etablissement : fileParser.getEtablissements()) {
+                etablissementProblemeTexte.appendText(etablissement.printInProblemFormat() + "\n");
             }
         }
         listeEtablissement = fileParser.getEtablissements();
@@ -164,17 +174,17 @@ public class InterfaceController {
     @FXML
     public void createAndSaveFile() throws FileNotFoundException {
         FileChooser fx = new FileChooser();
-        fx.getExtensionFilters().add(new FileChooser.ExtensionFilter(".txt",".csv"));
+        fx.getExtensionFilters().add(new FileChooser.ExtensionFilter(".txt", ".csv"));
         File f = fx.showSaveDialog(null);
         File file;
-        if(!f.getName().contains(".")) {
+        if (!f.getName().contains(".")) {
             file = new File(f.getAbsolutePath() + ".txt");
-            PrintWriter outFile =new PrintWriter(file);
-            for (Etudiant et:listEtudiant) {
+            PrintWriter outFile = new PrintWriter(file);
+            for (Etudiant et : listEtudiant) {
                 outFile.println(et.printInProblemFormat());
 
             }
-            for (Etablissement et:listeEtablissement) {
+            for (Etablissement et : listeEtablissement) {
                 outFile.println(et.printInProblemFormat());
 
             }
@@ -182,32 +192,51 @@ public class InterfaceController {
         }
 
 
-
     }
 
     @FXML
-    public void showSolutions(){
+    public void showSolutions() {
         solutionEtablissement.clear();
         solutionEtudiant.clear();
-        for (Etablissement et:listeEtablissement) {
-            solutionEtablissement.appendText(et.toString()+"\n");
-        }
-        for (Etudiant et:listEtudiant) {
-            solutionEtudiant.appendText(et.toString()+"\n");
+        double avgStuden=0.0;
+        double avgEtabl=0.0;
+        for (Etablissement et : listeEtablissement) {
+            solutionEtablissement.appendText(et.toString() + "\n");
+            avgEtabl+=et.calculateSatisfaction();
 
         }
+        for (Etudiant et : listEtudiant) {
+            solutionEtudiant.appendText(et.toString() + "\n");
+            avgStuden+=et.calculateSatisfaction();
+
+        }
+        avgStudent.setText(new DecimalFormat("##.##").format((avgStuden/listEtudiant.size()))+" %");
+        avgEtab.setText(new DecimalFormat("##.##").format((avgEtabl/listeEtablissement.size()))+" %");
+
+
         tabPrincipale.getSelectionModel().select(tabSolution);
 
 
     }
 
-    public void reset(){
-        this.listEtudiant=null;
-        this.listeEtablissement=null;
+    public void reset() {
+        this.listEtudiant = null;
+        this.listeEtablissement = null;
     }
 
+    public void shuffle() {
+        Collections.shuffle(listeEtablissement);
+        Collections.shuffle(listEtudiant);
+        etablissementProblemeTexte.clear();
+        etudiantProblemeText.clear();
+        for (Etudiant etudiant : listEtudiant) {
+            etudiantProblemeText.appendText(etudiant.printInProblemFormat() + "\n");
+        }
+        for (Etablissement etablissement : listeEtablissement) {
+            etablissementProblemeTexte.appendText(etablissement.printInProblemFormat() + "\n");
+        }
 
-
+    }
 
 
 }

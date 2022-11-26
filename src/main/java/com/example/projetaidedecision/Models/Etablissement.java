@@ -164,7 +164,7 @@ public class Etablissement {
                 ", capacity=" + capacity +
                 ", studentPriority=" + this.getPreferencesId() +
                 ", studentsEnroled=" + getEnrollerStudents() +
-                ", satisfaction,=" + calculateSatisfaction() +
+                ", satisfaction=" + calculateSatisfaction() +
                 '}';
     }
 
@@ -173,14 +173,17 @@ public class Etablissement {
             return 0;
         }else{
             double scoreTotal=0;
-
             for (Etudiant et:studentsEnroled) {
                 double position = this.studentPriority.indexOf(et);
                 scoreTotal += (1-((position)/this.studentPriority.size()))*100;
 
             }
-
+            if (studentsEnroled.isEmpty()){
+                return 0;
+            }
             return scoreTotal/studentsEnroled.size();
+
+
 
         }
     }
