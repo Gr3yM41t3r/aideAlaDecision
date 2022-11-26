@@ -120,7 +120,6 @@ public class InterfaceController {
 
     @FXML
     public void solvePriEtu() throws Exception {
-        System.out.println("solve2");
         listEtudiant.forEach(Etudiant::resetAssignement);
         listeEtablissement.forEach(Etablissement::resetAssignement);
         mariage = new StableMariage(listEtudiant,listeEtablissement);
@@ -131,7 +130,6 @@ public class InterfaceController {
 
     @FXML
     public void solvePriEta(){
-        System.out.println("solve");
         listEtudiant.forEach(Etudiant::resetAssignement);
         listeEtablissement.forEach(Etablissement::resetAssignement);
         mariage = new StableMariage(listEtudiant,listeEtablissement);

@@ -33,16 +33,12 @@ public class StableMariage {
                     Etudiant deleted = wish.getLowerPrefStudent(etudiant);
                     if (deleted != null) {
 
-                        System.out.println("--------------------------------------");
                         deleted.incrementChoice();
                         addToInput.add(deleted);
-                        System.out.println("1Université "+wish.getId() +"  has "+wish.getStudentsEnroled().size());
                         wish.removeAssignement(deleted);
-                        System.out.println("2Université "+wish.getId() +"  has now  "+wish.getStudentsEnroled().size());
                         deleted.setAssignement(null);
                         etudiant.addOneAssignement(wish);
                         wish.addOneAssignemen(etudiant);
-                        System.out.println("3Université "+wish.getId() +"  has now now "+wish.getStudentsEnroled().size());
 
                     } else {
                         etudiant.incrementChoice();
@@ -79,9 +75,13 @@ public class StableMariage {
                     if (deleted!=null){
                         deleted.incrementRank();
                         toAdd.add(deleted);
+                        System.out.println("------------------------------------------------------" );
+                        System.out.println("university assignet to" +deleted.getStudentsEnroled().get(0).getId());
                         etudiant.setAssignement(null);
+                        deleted.removeAssignement(etudiant);
                         etudiant.addOneAssignement(etablissement);
                         etablissement.addOneAssignemen(etudiant);
+                        System.out.println("university assignet to" +etablissement.getStudentsEnroled().get(0).getId());
 
                     }else {
                         etablissement.incrementRank();

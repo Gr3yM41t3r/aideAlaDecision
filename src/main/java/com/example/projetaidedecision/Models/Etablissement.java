@@ -173,16 +173,13 @@ public class Etablissement {
             return 0;
         }else{
             double scoreTotal=0;
-            System.out.println("-------------------------------------------");
 
             for (Etudiant et:studentsEnroled) {
                 double position = this.studentPriority.indexOf(et);
                 scoreTotal += (1-((position)/this.studentPriority.size()))*100;
-                System.out.println(scoreTotal);
 
             }
 
-            System.out.println(this.getId()+" tooot "+scoreTotal/studentsEnroled.size());
             return scoreTotal/studentsEnroled.size();
 
         }
