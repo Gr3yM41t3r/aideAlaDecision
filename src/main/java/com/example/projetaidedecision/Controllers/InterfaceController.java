@@ -2,22 +2,29 @@ package com.example.projetaidedecision.Controllers;
 
 import com.example.projetaidedecision.Models.Etablissement;
 import com.example.projetaidedecision.Models.Etudiant;
+import com.example.projetaidedecision.Models.Score;
 import com.example.projetaidedecision.Utils.FileParser;
 import com.example.projetaidedecision.algorithms.PreferencesGenerator;
 import com.example.projetaidedecision.algorithms.StableMariage;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
+import java.net.URL;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.ResourceBundle;
 
-public class InterfaceController {
+public class InterfaceController implements Initializable {
 
     StableMariage mariage;
     ArrayList<Etablissement> listeEtablissement;
@@ -33,6 +40,8 @@ public class InterfaceController {
 
     @FXML
     private CheckBox capFixe;
+
+
 
     @FXML
     private TextArea etablissementProblemeTexte;
@@ -60,6 +69,8 @@ public class InterfaceController {
 
     @FXML
     private Button openProblem;
+
+
 
     @FXML
     private Button saveProblem;
@@ -107,6 +118,29 @@ public class InterfaceController {
     private Text valeurNbVoeux;
 
     @FXML
+    private TableColumn<Score, String> satisfaction;
+    @FXML
+    private TableColumn<Score, String> version;
+
+    @FXML
+    private TableView<Score> comparaisonTable;
+
+    private ObservableList<Score> getScoreListe(){
+        ObservableList<Score> scores = FXCollections.observableArrayList();
+        return scores;
+    }
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        version.setCellValueFactory(new PropertyValueFactory<>("name"));
+        satisfaction.setCellValueFactory(new PropertyValueFactory<>("score"));
+        comparaisonTable.setItems(getScoreListe());
+        satisfaction.setSortType(TableColumn.SortType.DESCENDING);
+
+        comparaisonTable.getSortOrder().add(satisfaction);
+
+    }
+
+    @FXML
     private void generateProblem() throws Exception {
         reset();
         PreferencesGenerator preferencesGenerator = new PreferencesGenerator();
@@ -129,21 +163,84 @@ public class InterfaceController {
 
     @FXML
     public void solvePriEta() throws Exception {
+        comparaisonTable.getItems().clear();
+
         listEtudiant.forEach(Etudiant::resetAssignement);
         listeEtablissement.forEach(Etablissement::resetAssignement);
         mariage = new StableMariage(listEtudiant, listeEtablissement);
         mariage.solve2();
+        double avgStuden=0.0;
+        double avgEtabl=0.0;
+        for (Etablissement et : listeEtablissement) {
+            avgEtabl+=et.calculateSatisfaction();
+
+        }
+        for (Etudiant et : listEtudiant) {
+            avgStuden+=et.calculateSatisfaction();
+        }
+
+        comparaisonTable.getItems().add( new Score("prioEtablissement-Etudiant",new DecimalFormat("##.##").format((avgStuden/listEtudiant.size()))+" %"));
+        comparaisonTable.getItems().add( new Score("prioEtablissement-Etablissemnt",new DecimalFormat("##.##").format((avgEtabl/listeEtablissement.size()))+" %"));
         showSolutions();
+        listEtudiant.forEach(Etudiant::resetAssignement);
+        listeEtablissement.forEach(Etablissement::resetAssignement);
+        mariage = new StableMariage(listEtudiant, listeEtablissement);
+        mariage.solve();
+        avgStuden=0.0;
+        avgEtabl=0.0;
+        for (Etablissement et : listeEtablissement) {
+            avgEtabl+=et.calculateSatisfaction();
+
+        }
+        for (Etudiant et : listEtudiant) {
+            avgStuden+=et.calculateSatisfaction();
+        }
+
+        comparaisonTable.getItems().add( new Score("prioEtudiant-Etudiant",new DecimalFormat("##.##").format((avgStuden/listEtudiant.size()))+" %"));
+        comparaisonTable.getItems().add( new Score("prioEtudiant-Etablissemnt",new DecimalFormat("##.##").format((avgEtabl/listeEtablissement.size()))+" %"));
+        comparaisonTable.sort();
+
 
     }
 
     @FXML
-    public void solvePriEtu() {
+    public void solvePriEtu() throws Exception {
+        comparaisonTable.getItems().clear();
         listEtudiant.forEach(Etudiant::resetAssignement);
         listeEtablissement.forEach(Etablissement::resetAssignement);
         mariage = new StableMariage(listEtudiant, listeEtablissement);
         mariage.solve();
         showSolutions();
+        double avgStuden=0.0;
+        double avgEtabl=0.0;
+        for (Etablissement et : listeEtablissement) {
+            avgEtabl+=et.calculateSatisfaction();
+
+        }
+        for (Etudiant et : listEtudiant) {
+            avgStuden+=et.calculateSatisfaction();
+        }
+
+
+        comparaisonTable.getItems().add( new Score("prioEtudiant-Etudiant",new DecimalFormat("##.##").format((avgStuden/listEtudiant.size()))+" %"));
+        comparaisonTable.getItems().add( new Score("prioEtudiant-Etablissemnt",new DecimalFormat("##.##").format((avgEtabl/listeEtablissement.size()))+" %"));
+        listEtudiant.forEach(Etudiant::resetAssignement);
+        listeEtablissement.forEach(Etablissement::resetAssignement);
+        mariage = new StableMariage(listEtudiant, listeEtablissement);
+        mariage.solve2();
+        avgStuden=0.0;
+        avgEtabl=0.0;
+        for (Etablissement et : listeEtablissement) {
+            avgEtabl+=et.calculateSatisfaction();
+
+        }
+        for (Etudiant et : listEtudiant) {
+            avgStuden+=et.calculateSatisfaction();
+        }
+
+        comparaisonTable.getItems().add( new Score("prioEtablissement-Etudiant",new DecimalFormat("##.##").format((avgStuden/listEtudiant.size()))+" %"));
+        comparaisonTable.getItems().add( new Score("prioEtablissement-Etablissemnt",new DecimalFormat("##.##").format((avgEtabl/listeEtablissement.size()))+" %"));
+        comparaisonTable.sort();
     }
 
     @FXML
@@ -237,6 +334,7 @@ public class InterfaceController {
         }
 
     }
+
 
 
 }

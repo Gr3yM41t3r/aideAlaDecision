@@ -5,6 +5,8 @@
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Line?>
@@ -97,6 +99,20 @@
                      </children>
                   </AnchorPane>
                </content>
+            </Tab>
+            <Tab text="comparaison">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="comparaisonTable" layoutX="110.0" layoutY="114.0" prefHeight="281.0" prefWidth="426.0">
+                          <columns>
+                            <TableColumn fx:id="version" prefWidth="290.0" text="version" />
+                            <TableColumn fx:id="satisfaction" prefWidth="133.0" text="satisfaction" />
+                          </columns>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
+              </content>
             </Tab>
             </tabs>
         </TabPane>

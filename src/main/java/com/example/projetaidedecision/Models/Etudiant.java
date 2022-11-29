@@ -139,5 +139,6 @@ public class Etudiant {
     }
     public void resetAssignement(){
         this.assignement = null;
+        this.currentChoice=0;
     }
 }

@@ -177,8 +177,12 @@ public class Etablissement {
                 double position = this.studentPriority.indexOf(et);
                 scoreTotal += (1-((position)/this.studentPriority.size()))*100;
 
+
             }
             if (studentsEnroled.isEmpty()){
+                return 0;
+            }
+            if (scoreTotal/studentsEnroled.size()>100){
                 return 0;
             }
             return scoreTotal/studentsEnroled.size();
@@ -190,5 +194,6 @@ public class Etablissement {
 
     public void resetAssignement(){
         this.studentsEnroled = new ArrayList<>();
+        this.currentChoice=0;
     }
 }
